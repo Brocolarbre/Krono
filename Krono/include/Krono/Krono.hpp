@@ -101,8 +101,11 @@ namespace krono
 
 	inline void Chronometer::stop()
 	{
-		m_elapsedTime += std::chrono::steady_clock::now() - m_startTime;
-		m_stopped = true;
+		if (!m_stopped)
+		{
+			m_elapsedTime += std::chrono::steady_clock::now() - m_startTime;
+			m_stopped = true;
+		}
 	}
 
 	inline void Chronometer::reset()
@@ -166,8 +169,11 @@ namespace krono
 
 	inline void Timer::stop()
 	{
-		m_elapsedTime += std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - m_startTime);
-		m_stopped = true;
+		if (!m_stopped)
+		{
+			m_elapsedTime += std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - m_startTime);
+			m_stopped = true;
+		}
 	}
 
 	inline void Timer::reset()
